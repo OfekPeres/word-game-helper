@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "./flaskr/__init__.py",
+      "src": "./flaskr/index.py",
       "use": "@vercel/python"
     }
   ],

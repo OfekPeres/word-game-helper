@@ -35,9 +35,9 @@ class AnagramHelper:
         each sorted word to all valid anagrams as well as the frequency of each
         character in that specific anagram
 
-        
         Args:
             word: the string to be added
+
         Returns:
             None
         """
@@ -73,7 +73,7 @@ class AnagramHelper:
             self.__AddWordToAnagramsDict(word)
             self.__AddWordToLenDict(word)
 
-    def __GetSubAnagrams(self, word):
+    def __GetSubAnagrams(self, word) -> list[str]:
         """
         A method to search for all subanagrams of the inputted word.
 

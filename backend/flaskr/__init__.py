@@ -1,9 +1,9 @@
-# A bit of a circular import, but because the app is small:
-# First, create the app using the 2 lines below
 from flask import Flask
 from flask_cors import CORS
-from .jumblesolver.src.anagramhelper import AnagramHelper
-from .utils.fileutils import readDictionaryFile
+from flaskr.jumblesolver.src.anagramhelper import AnagramHelper
+from .jumblesolver.src.utils.fileutils import readDictionaryFile
+
+# First, create the app using the 2 lines below
 app = Flask(__name__)
 CORS(app)
 
@@ -15,10 +15,8 @@ wiki100kwords = readDictionaryFile(pathToWiki100KWords)
 corncobAnagramHelper = AnagramHelper(corncobWordList)
 wikiAnagramHelper = AnagramHelper(wiki100kwords)
 
-# Import all of the python files need from the directory name
-# These files can in turn import app from the __init__.py file
-# and therefore add routes and methods
 
+# Import the API routes 
 from flaskr import anagrams
 
 if  __name__ == "__main__":

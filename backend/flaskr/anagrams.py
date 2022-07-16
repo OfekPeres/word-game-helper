@@ -1,4 +1,5 @@
-from flask import jsonify, request, make_response
+from flask import request, make_response
+
 from flaskr import app, corncobAnagramHelper, wikiAnagramHelper
 import json
 from .jumblesolver.src.anagramhelper import AnagramHelper
@@ -11,11 +12,19 @@ def get_anagrams():
     available installed dictionaries.
     An example request would be /api/get-anagrams?query=dog&dictionary=corn
     """
+    bad_response = make_response(json.dumps("Invalid Request"))
+    bad_response.status = 400
+    
     if request.method != "GET":
-        response = make_response(None)
-        response.status = "400"
-        return response
+        bad_response
+
     args = request.args
+
+    if args['dictionary'] is None or args['query'] is None:
+        print(args)
+        print("missing a key")
+        return bad_response
+
     if args['dictionary'] == "corn":
         anagrams = corncobAnagramHelper.GetAnagramsandSubAnagrams(args['query'])
     elif args['dictionary'] == "wiki":

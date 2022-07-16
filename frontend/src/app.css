@@ -23,7 +23,7 @@
 	[multiple],
 	textarea,
 	select,
-    input {
+	input {
 		@apply p-2 md:px-3 w-full border-gray-300 border rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
 	}
 }

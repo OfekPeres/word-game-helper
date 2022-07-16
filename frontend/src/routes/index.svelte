@@ -8,6 +8,6 @@
 <Header />
 <main class="flex-auto h-full">
 	<Anagramform />
-	<Anagramlist/>
+	<Anagramlist />
 </main>
 <Footer />

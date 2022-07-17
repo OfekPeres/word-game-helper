@@ -1,11 +1,19 @@
-from flask import request, make_response
-
-from flaskr import app, corncobAnagramHelper, wikiAnagramHelper
+from flask import request, make_response, Blueprint
 import json
 from .jumblesolver.src.anagramhelper import AnagramHelper
+from .jumblesolver.src.utils.fileutils import readDictionaryFile
 
+# Create Two Anagram solvers, one for each of the valid word lists
+pathToCorncobWords = "./dictionaries/corncob_lowercase.txt"
+pathToWiki100KWords = "./dictionaries/wiki-100k.txt"
+corncobWordList = readDictionaryFile(pathToCorncobWords)
+wiki100kwords = readDictionaryFile(pathToWiki100KWords)
+corncobAnagramHelper = AnagramHelper(corncobWordList)
+wikiAnagramHelper = AnagramHelper(wiki100kwords)
 
-@app.route('/api/get-anagrams', methods=["GET"])
+anagrams = Blueprint("anagrams", __name__, url_prefix="/api")
+
+@anagrams.route('/get-anagrams', methods=["GET"])
 def get_anagrams():
     """
     Define an api route to get the anagrams of a query word from one of the two 
@@ -33,7 +41,7 @@ def get_anagrams():
     response.content_type = 'application/json'
     return response
 
-@app.route('/api/get-word-list', methods=["GET"])
+@anagrams.route('/api/get-word-list', methods=["GET"])
 def get_word_list():
     """
     Define an api route to get the word list of a specific dictionary.

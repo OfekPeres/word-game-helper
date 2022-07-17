@@ -115,15 +115,47 @@ conda install pip
 
 Once you have created your virtual environment
 
-Install all of the requirements in the requirements.txt file
+Install all of the requirements in the requirements folder
+
+You can use the provided makefile:
 
 ```bash
-pip install -r requirements.txt
+make develop
+```
+
+or manually with:
+```bash
+pip install -r requirements/common.txt
+pip install -r requirements/develop.txt
 ```
 
 Run the local server with:
 ```
-FLASK_APP=flaskr FLASK_ENV=development flask run
+FLASK_APP=api FLASK_ENV=development flask run
 ```
 
 The app should start on localhost:5000
+
+
+If you want to run the app in production mode, you can use the makefile to run the startup script which will spin up a gunicorn web server to better handle traffic:
+
+```bash
+make start
+```
+
+## Containers
+To actually deploy this application on heroku, I utilized podman and a Dockerfile to copy over the relevant source code, install all of the requirements, and set up the gunicorn server. 
+
+If you have docker or podman installed locally, you can build the image with:
+
+```bash
+podman build . -t flask-app
+```
+
+and run it with 
+
+```bash
+podman run -t -p 8080:8080 flask-app
+```
+
+This blog post was helpful in understanding how to put the pieces together: https://mark.douthwaite.io/getting-production-ready-a-minimal-flask-app/

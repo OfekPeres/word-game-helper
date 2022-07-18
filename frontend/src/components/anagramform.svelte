@@ -16,7 +16,7 @@
 	async function handleSubmit() {
 		loadingstore.set({ isLoading: true });
 		const res = await axios.get(
-			`${variables.basePath}/api/get-anagrams?query=${formData.queryWord}&dictionary=${formData.selectedDictionary.value.toLowerCase()}`
+			`${variables.basePath}/api/get-anagrams?query=${formData.queryWord.toLowerCase()}&dictionary=${formData.selectedDictionary.value}`
 		);
 		const anagrams = res.status === 200 ? res.data : [];
 		anagramstore.set(anagrams);

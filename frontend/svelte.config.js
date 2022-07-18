@@ -1,28 +1,18 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
-
-const dev = "production" === "development";
+import autoprefixer from 'autoprefixer';
+import tailwind from 'tailwindcss';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		adapter: adapter({
-			pages: 'docs',
-			assets: 'docs'
-		}),
-		prerender: {
-			default: true
+	preprocess: preprocess({
+		postcss: {
+			plugins: [tailwind, autoprefixer]
 		}
-	},
-	paths: {
-		base: dev ? "" : "/word-game-helper"
-	},
-
-	preprocess: [
-		preprocess({
-			postcss: true
-		})
-	]
+	}),
+	kit: {
+		adapter: adapter()
+	}
 };
 
 export default config;

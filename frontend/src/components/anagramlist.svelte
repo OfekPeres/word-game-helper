@@ -18,7 +18,7 @@
 		<h1 class="text-center text-3xl md:text-6xl font-bold underline text-blue-400">
 			Discovered Anagrams
 		</h1>
-		<div class="mt-6 flex justify-center flex-wrap gap-4">
+		<div class="mt-6 flex justify-center flex-wrap">
 			{#each $anagramstore as anagram, i (i)}
 				<AnagramBubble {anagram} />
 			{/each}

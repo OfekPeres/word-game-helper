@@ -1,10 +1,5 @@
-# Todo
-- publish svelte app to github pages
-
-
-
 # Website
-The live project can be found here: https://ofekperes.github.io/word-game-helper/
+The live project can be found here: https://word-game-helper-ofekperes.vercel.app/
 The website is a user friendly way to find anagrams :)
 
 
@@ -174,7 +169,13 @@ My initial plan was to deploy my app as a docker container. This ended up not wo
 Instead, I deployed my actual repo to heroku and had it build and run my flask app with gunicorn. There are a few caveats that I'll mention in the "stuff I learned section"
 
 
-## Svelte App on Github Pages
+## Svelte App on ~~Github Pages~~ Vercel
+
+Initially, I had planned to deploy the website to github pages, like I have many react (gatsby) applications. I shared my process below, but ran in to an issue where even though everything looked correct in development and in the build preview, as soon as I deployed the website, all of the styles were lost, so it was just a plain html website. I am actively looking into this, and will update when I understand what the issue was. 
+
+Instead of GitHub pages, I deployed the app to Vercel, which was actually a fairly nice process. Simply linked my repository to vercel and it was able to pick up that it was a sveltekit application.
+
+### Attempt to deploy to github pages, failure
 To deploy the svelte app to github pages, I had to modify the svelte.config.js file to include the static adapter and update the kit.prerender.default value to true. I also had to add a .nojekyll file to the static directory so github knows not to use the jekyll static site generator.
 
 When the app is built, `npm run build`, the output is all placed in the docs folder. GitHub is able to pick a website out of the docs directory, but only if it is as the root level. So, I appended a `mv` command to run after the build is complete to move the docs directory one level up.

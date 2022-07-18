@@ -3,13 +3,14 @@
 
 
 
-# Live Project
-The live project can be found here:
+# Website
+The live project can be found here: https://ofekperes.github.io/word-game-helper/
+The website is a user friendly way to find anagrams :)
 
 
 # Finding Anagrams from the command line
 
-If you are interested in testing out the tool from the command line, open up this repo in your favorite terminal and navigate to backend/flaskr/jumblesolver.
+If you are interested in testing out the tool from the command line, open up this repo in your favorite terminal and navigate to backend/api/jumblesolver.
 
 From this directory, you can run:
 
@@ -19,9 +20,9 @@ python main.py <path_to_dictionary_file> <query_word>
 # For example, to find the anagrams and subanagrams for the
 # word "dog" in the corncob lowercase dictionary file, run:
 
-python main.py ../dictionaries/corncob_lowercase.txt dog
+python main.py ../../dictionaries/corncob_lowercase.txt dog
 ```
-Note that all of the dictionary files are stored in the backend/flaskr/dictionaries directory, feel free to add a new dictionary there.
+Note that all of the dictionary files are stored in the backend/dictionaries directory, feel free to add a new dictionary there.
 
 
 # Algorithm Analysis
@@ -73,21 +74,26 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 
-# If you want to see the code changes reflected live on your mobile device, 
-# make sure that your computer and phone are connected to the same wifi network
+# If you want to see the code changes reflected live on your 
+# mobile device, make sure that your computer and phone are 
+# connected to the same wifi network
 # and instead run the following command
 npm run dev -- --host 
 ```
 
 Note 1: If you want to run the application locally, you will need to define an .env.development file and add to it the following variable:
-```
-# This is the base address for the locally running python flask server
+```bash
+# This is the base address for the locally running python 
+# flask server
 VITE_PUBLIC_BASE_PATH=http://localhost:5000
 ```
 
-Note 2: If you want to see the app on your phone, you will need to find your computer's ip address which should be displayed in the terminal window where you typed the npm run dev command, but if not can, on mac you can find the ip address under advanced wifi settings. Next, navigate in your phone's browser to `http://<computer_ip_address>:<port_of_svelte_app>`.
+Note 2: If you want to see the app on your phone, you will need to find your computer's ip address which should be displayed in the terminal window where you typed the npm run dev command, but if not, on mac you can find the ip address under advanced wifi settings. Next, navigate in your phone's browser to `http://<computer_ip_address>:<port_of_svelte_app>`.
 ## Flask - the backend
 Once you have cloned the repository and navigated to the backend directory...
+```bash
+cd backend
+```
 
 Make sure you are using python 3.9 or higher. I personally like anaconda for managing python and package versions but use your manager of choice.
 
@@ -163,13 +169,15 @@ This blog post was helpful in understanding how to put the pieces together: http
 
 
 ## Flask App on heroku
-My initial plan was to deploy my app as a docker container. This ended up not working out because docker did not play well with my mac. I got everything working locally with podman, a docker alternative, but when I went to deploy it to heroku, heroku was unable to understand the format of the podman image. This is a known issue with heroku. I could have deployed to an alternative cloud provider but heroku hosts some of my other applications for free and I wanted to give it another chance.
+My initial plan was to deploy my app as a docker container. This ended up not working out because docker did not play well with my mac. I got everything working locally with podman, a docker alternative, but when I went to deploy it to heroku, heroku was unable to understand the format of the podman image. A touch of searching revealed that this is a known issue with heroku. I could have deployed to an alternative cloud provider but heroku hosts some of my other applications for free and I wanted to give it another chance.
 
 Instead, I deployed my actual repo to heroku and had it build and run my flask app with gunicorn. There are a few caveats that I'll mention in the "stuff I learned section"
 
 
 ## Svelte App on Github Pages
+To deploy the svelte app to github pages, I had to modify the svelte.config.js file to include the static adapter and update the kit.prerender.default value to true. I also had to add a .nojekyll file to the static directory so github knows not to use the jekyll static site generator.
 
+When the app is built, `npm run build`, the output is all placed in the docs folder. GitHub is able to pick a website out of the docs directory, but only if it is as the root level. So, I appended a `mv` command to run after the build is complete to move the docs directory one level up.
 
 
 # Stuff I Learned

@@ -7,7 +7,7 @@
 
 {#if $loadingstore.isLoading}
 	<span
-		transition:fly={{ y: 200, duration: 300 }}
+		transition:fade={{ duration: 300 }}
 		class="flex mt-6 justify-center text-lg md:text-3xl text-gray-600 text-center">
 		Results are loading...
 	</span>

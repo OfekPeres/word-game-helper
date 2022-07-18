@@ -1,7 +1,4 @@
 # Todo
-- Write up readme
-- publish python backend
-- update production api endpoint to actual endpoint in .env file
 - publish svelte app to github pages
 
 
@@ -143,8 +140,11 @@ If you want to run the app in production mode, you can use the makefile to run t
 make start
 ```
 
+
+# Deploying
+
 ## Containers
-To actually deploy this application on heroku, I utilized podman and a Dockerfile to copy over the relevant source code, install all of the requirements, and set up the gunicorn server. 
+Initially, I planned on deploying the backend by containerizing it and sending it to heroku. While I was able to get the container to build and run locally, heroku does not support the way podman builds  images and I therefore did not actually use a container to deploy.
 
 If you have docker or podman installed locally, you can build the image with:
 
@@ -159,3 +159,28 @@ podman run -t -p 8080:8080 flask-app
 ```
 
 This blog post was helpful in understanding how to put the pieces together: https://mark.douthwaite.io/getting-production-ready-a-minimal-flask-app/
+
+
+
+## Flask App on heroku
+My initial plan was to deploy my app as a docker container. This ended up not working out because docker did not play well with my mac. I got everything working locally with podman, a docker alternative, but when I went to deploy it to heroku, heroku was unable to understand the format of the podman image. This is a known issue with heroku. I could have deployed to an alternative cloud provider but heroku hosts some of my other applications for free and I wanted to give it another chance.
+
+Instead, I deployed my actual repo to heroku and had it build and run my flask app with gunicorn. There are a few caveats that I'll mention in the "stuff I learned section"
+
+
+## Svelte App on Github Pages
+
+
+
+# Stuff I Learned
+
+## About Heroku
+Heroku is verrrryyyyy picky. You have to deploy a repo whose code is at the root, so my monorepo with both the frontend and backend was not acceptable. To get around this, I pushed only the backend directory to heroku with the following command:
+
+```bash
+git subtree push --prefix backend heroku master
+```
+
+Furthermore, heroku identifies projects as Python projects by the existance of a requirements.txt file at the root. When I put my 2 requirement files in the requirements directory, heroku was unpleased. That was fixed by adding a "production" requirements.txt file at the "root" level of the backend directory.
+
+Last, the Procfile also has to be at the "root" level of the backend directory.

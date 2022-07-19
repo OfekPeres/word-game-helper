@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        'rockwell-bold': ['RockWellBold', ...defaultTheme.fontFamily.sans],
         'rockwell': ['RockWell', ...defaultTheme.fontFamily.sans],
         'academy': ['AcademyEngraved', ...defaultTheme.fontFamily.sans],
       },

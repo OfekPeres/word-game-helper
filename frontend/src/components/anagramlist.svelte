@@ -15,7 +15,7 @@
 
 {#if !$loadingstore.isLoading}
 	<div class="mx-2 my-4 py-2">
-		<h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold font-rockwell text-blue-400 uppercase">
+		<h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold font-rockwell-bold text-blue-400 uppercase">
 			Discovered Anagrams
 		</h1>
 		<div class="mt-6 flex justify-center flex-wrap">

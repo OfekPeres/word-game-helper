@@ -33,7 +33,12 @@
 	}
 	
 	@font-face {
-		font-family: RockWell;
+		font-family: RockWellBold;
 		src: url(/fonts/rockb.ttf);
+	}
+
+	@font-face {
+		font-family: RockWell;
+		src: url(/fonts/ROCK.ttf);
 	}
 }

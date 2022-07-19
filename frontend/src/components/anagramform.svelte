@@ -66,7 +66,7 @@
 				<button
 					type="submit"
 					disabled={formData.queryWord === ''}
-					class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium font-rockwell upper text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-not-allowed disabled:bg-gray-500">
+					class="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm  font-medium font-rockwell upper text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:cursor-not-allowed disabled:bg-gray-500">
 					Find the Anagrams!
 				</button>
 			</div>

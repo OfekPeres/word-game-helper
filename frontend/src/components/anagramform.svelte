@@ -33,25 +33,25 @@
 	<div class="bg-white py-8 px-6 mx-4 shadow sm:px-10 text-sm md:text-lg lg:text-xl">
 		<form class="mb-0 space-y-6" on:submit|preventDefault={handleSubmit}>
 			<div>
-				<label for="query" class="block font-medium text-gray-700 font-rockwell">
+				<label for="query" class="block font-medium text-gray-700 font-rockwell-bold">
 					Enter a word to find its anagrams
 				</label>
 				<div class="mt-1 relative group">
-					<input id="query" name="query" type="text" required bind:value={formData.queryWord} />
+					<input id="query" name="query" type="text" class="font-sans" required bind:value={formData.queryWord} />
 					<SearchIcon
-						className="absolute right-0 top-[3px] w-7 h-7 md:top-1 md:w-10 md:h-10 text-gray-400 group-focus-within:text-blue-400" />
+						className="absolute right-0 top-[3px] w-7 h-7 md:top-1 md:w-10 md:h-10 transition text-gray-400 group-focus-within:text-blue-400 group-focus-within:-translate-y-8 md:group-focus-within:-translate-y-11" />
 				</div>
 			</div>
 
 			<div>
-				<label for="dictionary" class="block font-medium text-gray-700 font-rockwell"
+				<label for="dictionary" class="block font-medium text-gray-700 font-rockwell-bold"
 					>Pick a dictionary to search for anagrams in:
 				</label>
 				<div class="mt-1">
 					<select
 						name="dictionary"
 						id="dictionary"
-						class="bg-white"
+						class="bg-white font-rockwell text-sm md:text-lg"
 						bind:value={formData.selectedDictionary}>
 						{#each dictionaryOptions as dictionary}
 							<option value={dictionary}>
